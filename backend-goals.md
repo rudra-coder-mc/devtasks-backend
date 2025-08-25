@@ -9,7 +9,7 @@ using the latest 2025 tech stack and best practices.
 - NestJS 11 (TypeScript)
 - PostgreSQL 17 (Docker, via `docker-compose`)
 - Prisma ORM (latest)
-- Zod (v3 for compatibility with NestJS ecosystem)
+- Zod (via `nestjs-zod` for validation + Swagger integration)
 - Swagger for API docs
 - WebSockets for real-time updates
 
@@ -29,35 +29,33 @@ using the latest 2025 tech stack and best practices.
 - [x] Tested DB connection with `test-db.ts`
 - [x] Created `PrismaService` and `PrismaModule` for global DB access
 - [x] Created `TaskModule`, `TaskService`, and `TaskController`
-- [x] Implemented `GET /tasks` and `POST /tasks`
-- [x] Added Zod validation with a custom `ZodValidationPipe`
-- [x] Integrated Swagger (`http://localhost:3000/api`) for API docs
+- [x] Implemented full CRUD for tasks:
+  - `GET /tasks` → List all tasks
+  - `GET /tasks/:id` → Get a single task
+  - `POST /tasks` → Create a task
+  - `PATCH /tasks/:id` → Update a task
+  - `DELETE /tasks/:id` → Delete a task
+- [x] Added validation with **nestjs-zod** (`createZodDto`)
+- [x] Integrated Swagger (`http://localhost:3000/api`) with working schemas
 
 ---
 
 ## 🎯 Next Steps
-1. **Complete CRUD for Tasks**
-   - [ ] `GET /tasks/:id` → Get a single task
-   - [ ] `PATCH /tasks/:id` → Update a task
-   - [ ] `DELETE /tasks/:id` → Delete a task
-2. **Improve Validation**
-   - [ ] Add DTOs for update requests (e.g., `UpdateTaskDto`)
-   - [ ] Ensure Zod schemas cover all fields
-3. **Enhance Swagger Docs**
-   - [ ] Add request/response schemas for all endpoints
-   - [ ] Group endpoints by tags
-4. **Authentication**
+1. **Authentication**
+   - [ ] Add `User` model in Prisma
+   - [ ] Implement `POST /auth/register` and `POST /auth/login`
    - [ ] Add JWT-based authentication
    - [ ] Protect task routes (only logged-in users can CRUD tasks)
-5. **Real-time Features**
+2. **Database Seeding**
+   - [ ] Add a `prisma/seed.ts` script to populate initial users + tasks
+   - [ ] Run seeds automatically in dev
+3. **Real-time Features**
    - [ ] Add WebSocket gateway for live task updates
    - [ ] Broadcast task changes to connected clients
-6. **Database Seeding**
-   - [ ] Add a `prisma/seed.ts` script to populate initial tasks
-   - [ ] Run seeds automatically in dev
-7. **Deployment Prep**
+4. **Deployment Prep**
    - [ ] Add `docker-compose.override.yml` for running backend + DB together
    - [ ] Prepare environment variables for production
+   - [ ] Deploy backend to Railway/Render
 
 ---
 
@@ -69,3 +67,9 @@ using the latest 2025 tech stack and best practices.
 - Swagger docs available at: `http://localhost:3000/api`
 - pgAdmin available at: `http://localhost:5050` (login: `admin@devtasks.com / admin`)
 
+---
+
+✅ Now your **CRUD milestone is complete**.  
+🎯 Next milestone: **Authentication (JWT)** with a `User` model.  
+
+---
