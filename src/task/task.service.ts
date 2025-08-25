@@ -15,8 +15,8 @@ export class TaskService {
     })
   }
 
-  async getById(id: number): Promise<Task> {
-    const task = await this.prisma.task.findUnique({ where: { id } })
+  async getById(id: number, userId: number): Promise<Task> {
+    const task = await this.prisma.task.findUnique({ where: { id, userId } })
     if (!task) throw new NotFoundException(`task with id ${id} not found`)
     return task
   }
